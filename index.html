@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<script src="http://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 사용자님이 제공해주신 원래 로직을 그대로 사용합니다.
+            if(data.userSelectedType === 'R'){
+                // TestApp(AndroidBridge)으로 도로명 주소와 건물명을 전달합니다.
+                window.TestApp.setAddress(data.zonecode, data.roadAddress, data.buildingName);
+            } else {
+                // TestApp(AndroidBridge)으로 지번 주소와 건물명을 전달합니다.
+                window.TestApp.setAddress(data.zonecode, data.jibunAddress, data.buildingName);
+            }
+        },
+        width : '100%',
+        height : '100%'
+    }).embed(document.body);
+</script>
+</body>
+</html>
